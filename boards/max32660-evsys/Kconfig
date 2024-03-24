@@ -1,0 +1,10 @@
+
+config BOARD
+    default "max32660-evsys" if BOARD_MAX32660_EVSYS
+
+config BOARD_MAX32660_EVSYS
+    bool
+    default y
+    select CPU_MODEL_MAX32
+    select HAS_PERIPH_GPIO
+
