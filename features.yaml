@@ -249,6 +249,15 @@ groups:
           - name: cpu_sam3
             help: The MCU has an Atmel/Microchip SAM 3 CPU
 
+      - title: Analog Devices MAX32 Grouping
+        features:
+        - name: cpu_max32660
+          help: The MCU has an Analog Devices MAX32660 CPU
+        - name: cpu_max32620
+          help: The MCU has an Analog Devices MAX32620 CPU
+        - name: cpu_max32625
+          help: The MCU has an Analog Devices MAX32625 CPU
+
       - title: GigaDevice Semiconductor Inc Grouping
         features:
         - name: cpu_gd32v

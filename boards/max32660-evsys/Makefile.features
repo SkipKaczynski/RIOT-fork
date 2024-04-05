@@ -1,6 +1,16 @@
 
-CPU_MODEL = max32
+CPU = max32660
+CPU_MODEL = MAX32660H5QR
 
-# put defined MCU peripherals here in alphabetical order
+# Put defined MCU peripherals here (in alphabetical order)
 FEATURES_PROVIDED += periph_gpio
+#FEATURES_PROVIDED += periph_uart   must build with  CONTINUE_ON_EXPECTED_ERRORS=1
 
+
+
+#  CPU = lm4f120
+#  CPU_MODEL = LM4F120H5QR
+#  
+#  # Put defined MCU peripherals here (in alphabetical order)
+#  FEATURES_PROVIDED += periph_gpio
+#  #FEATURES_PROVIDED += periph_uart   must build with  CONTINUE_ON_EXPECTED_ERRORS=1

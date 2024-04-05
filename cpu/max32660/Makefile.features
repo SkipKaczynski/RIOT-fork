@@ -1,0 +1,8 @@
+
+CPU_CORE = cortex-m4f
+CPU_FAM  = max32660
+
+FEATURES_PROVIDED += cortexm_mpu
+
+include $(RIOTCPU)/cortexm_common/Makefile.features
+
