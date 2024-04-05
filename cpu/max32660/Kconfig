@@ -1,0 +1,33 @@
+
+config CPU_FAM_MAX32660
+    bool
+    select CPU_CORE_CORTEX_M4F
+    select HAS_CORTEXM_MPU
+    select HAS_CPU_MAX32660
+
+config CPU_MODEL_MAX32660H5QR
+    bool
+    select CPU_FAM_MAX32660
+
+
+## Declaration of specific features
+config HAS_CPU_MAX32660
+    bool
+    help
+        Indicates that a 'max32660' cpu is being used.
+
+
+## Common CPU symbols
+config CPU_FAM
+    default "max32660" if CPU_FAM_MAX32660
+
+config CPU
+    default "max32660" if CPU_FAM_MAX32660
+
+config CPU_MODEL
+    # uppercase to match the Makefile.features
+    default "MAX32660H5QR" if CPU_MODEL_MAX32660H5QR
+
+
+source "$(RIOTCPU)/cortexm_common/Kconfig"
+
