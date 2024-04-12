@@ -1,10 +1,10 @@
 
 config BOARD
-    default "ek-lm4f120xl" if BOARD_EK_LM4F120XL
+    default "max32660-evsys" if BOARD_MAX32660-EVSYS
 
-config BOARD_EK_LM4F120XL
+config BOARD_MAX32660-EVSYS
     bool
     default y
-    select CPU_MODEL_LM4F120H5QR
+    select CPU_MODEL_MAX32660H5QR
     select HAS_PERIPH_GPIO
 

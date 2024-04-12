@@ -9,6 +9,5 @@ LINKER_SCRIPT ?= cortexm.ld
 
 include $(RIOTMAKE)/arch/cortexm.inc.mk
 
-#include $(RIOTCPU)/stellaris_common/Makefile.include
 include $(RIOTCPU)/max32_common/Makefile.include
 

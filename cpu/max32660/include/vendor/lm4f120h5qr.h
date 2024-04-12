@@ -48,28 +48,31 @@
  * @brief LM4F120H5QR Interrupt Number Definition, according to the selected device
  *        in @ref Library_configuration_section
  */
+
 typedef enum
 {
+
 /******  Cortex-M4 Processor Exceptions Numbers ****************************************************************/
   NonMaskableInt_IRQn         = -14,    /*!< 2 Non Maskable Interrupt                                          */
   MemoryManagement_IRQn       = -12,    /*!< 4 Cortex-M4 Memory Management Interrupt                           */
   BusFault_IRQn               = -11,    /*!< 5 Cortex-M4 Bus Fault Interrupt                                   */
   UsageFault_IRQn             = -10,    /*!< 6 Cortex-M4 Usage Fault Interrupt                                 */
-  SVCall_IRQn                 = -5,     /*!< 11 Cortex-M4 SV Call Interrupt                                    */
-  DebugMonitor_IRQn           = -4,     /*!< 12 Cortex-M4 Debug Monitor Interrupt                              */
-  PendSV_IRQn                 = -2,     /*!< 14 Cortex-M4 Pend SV Interrupt                                    */
-  SysTick_IRQn                = -1,     /*!< 15 Cortex-M4 System Tick Interrupt                                */
+  SVCall_IRQn                 =  -5,    /*!< 11 Cortex-M4 SV Call Interrupt                                    */
+  DebugMonitor_IRQn           =  -4,    /*!< 12 Cortex-M4 Debug Monitor Interrupt                              */
+  PendSV_IRQn                 =  -2,    /*!< 14 Cortex-M4 Pend SV Interrupt                                    */
+  SysTick_IRQn                =  -1,    /*!< 15 Cortex-M4 System Tick Interrupt                                */
+
 /******  LM4F specific Interrupt Numbers ***********************************************************************/
-  GPIOPortA_IRQn              = 0,
-  GPIOPortB_IRQn              = 1,
-  GPIOPortC_IRQn              = 2,
-  GPIOPortD_IRQn              = 3,
-  GPIOPortE_IRQn              = 4,
-  UART0_IRQn                  = 5,
-  UART1_IRQn                  = 6,
-  SSI0_IRQn                   = 7,
-  I2C0_IRQn                   = 8,
-  PWMFault_IRQn               = 9,
+  GPIOPortA_IRQn              =  0,
+  GPIOPortB_IRQn              =  1,
+  GPIOPortC_IRQn              =  2,
+  GPIOPortD_IRQn              =  3,
+  GPIOPortE_IRQn              =  4,
+  UART0_IRQn                  =  5,
+  UART1_IRQn                  =  6,
+  SSI0_IRQn                   =  7,
+  I2C0_IRQn                   =  8,
+  PWMFault_IRQn               =  9,
   PWM0_IRQn                   = 10,
   PWM1_IRQn                   = 11,
   PWM2_IRQn                   = 12,
@@ -111,7 +114,7 @@ typedef enum
 } IRQn_Type;
 
 
-#include <stdint.h>               /* standard types definitions               */
-#include "core_cm4.h"             /* Cortex-M4 processor and core peripherals */
+#include <stdint.h>
+#include "core_cm4.h"
 
 #endif

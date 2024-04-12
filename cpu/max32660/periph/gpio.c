@@ -1,23 +1,3 @@
-/*
- * Copyright (C) 2015 Marc Poulhiès
- *
- * This file is subject to the terms and conditions of the GNU Lesser General
- * Public License v2.1. See the file LICENSE in the top level directory for more
- * details.
- */
-
-/**
- * @ingroup     cpu_lm4f120
- * @ingroup     drivers_periph_gpio
- * @{
- *
- * @file
- * @brief       Low-level GPIO driver implementation
- *
- * @author      Marc Poulhiès <dkm@kataplop.net>
- *
- * @}
- */
 
 #include <stdio.h>
 
@@ -58,6 +38,7 @@ static inline uint8_t _port_num(gpio_t pin)
     return (pin >> 4);
 }
 
+
 static const uint32_t _sysctl_port_base[] = {
     SYSCTL_PERIPH_GPIOA,
     SYSCTL_PERIPH_GPIOB,
@@ -76,6 +57,7 @@ static const uint32_t _port_base[] = {
     GPIO_PORTF_BASE,
 };
 
+
 #ifdef MODULE_PERIPH_GPIO_IRQ
 static const uint32_t _int_assign[] = {
     INT_GPIOA,
@@ -92,7 +74,8 @@ typedef struct {
 } gpio_state_t;
 
 static gpio_state_t gpio_config[NUM_OF_PORT][NUM_OF_PINS];
-#endif /* MODULE_PERIPH_GPIO_IRQ */
+#endif
+
 
 int gpio_init(gpio_t pin, gpio_mode_t mode)
 {
@@ -119,6 +102,7 @@ int gpio_init(gpio_t pin, gpio_mode_t mode)
     return 0;
 }
 
+
 int gpio_read(gpio_t pin)
 {
     const uint8_t port_num = _port_num(pin);
@@ -127,6 +111,7 @@ int gpio_read(gpio_t pin)
 
     return HWREG(port_addr + ((1<<pin_num) << 2)) != 0;
 }
+
 
 void gpio_set(gpio_t pin)
 {
@@ -138,6 +123,7 @@ void gpio_set(gpio_t pin)
     ROM_GPIOPinWrite(port_addr, 1<<pin_num, 1<<pin_num);
 }
 
+
 void gpio_clear(gpio_t pin)
 {
     const uint8_t port_num = _port_num(pin);
@@ -146,6 +132,7 @@ void gpio_clear(gpio_t pin)
 
     HWREG(port_addr + ((1<<pin_num) << 2)) = 0;
 }
+
 
 void gpio_toggle(gpio_t pin)
 {
@@ -157,6 +144,7 @@ void gpio_toggle(gpio_t pin)
     }
 }
 
+
 void gpio_write(gpio_t pin, int value)
 {
     if (value) {
@@ -167,7 +155,10 @@ void gpio_write(gpio_t pin, int value)
     }
 }
 
+
+
 #ifdef MODULE_PERIPH_GPIO_IRQ
+
 static void _isr_gpio(uint32_t port_num){
     const uint32_t port_addr = _port_base[port_num];
     uint32_t isr = ROM_GPIOPinIntStatus(port_addr, true);
@@ -187,29 +178,12 @@ static void _isr_gpio(uint32_t port_num){
     cortexm_isr_end();
 }
 
-void isr_gpio_porta(void){
-    _isr_gpio(0);
-}
-
-void isr_gpio_portb(void){
-    _isr_gpio(1);
-}
-
-void isr_gpio_portc(void){
-    _isr_gpio(2);
-}
-
-void isr_gpio_portd(void){
-    _isr_gpio(3);
-}
-
-void isr_gpio_porte(void){
-    _isr_gpio(4);
-}
-
-void isr_gpio_portf(void){
-    _isr_gpio(5);
-}
+void isr_gpio_porta(void){ _isr_gpio(0); }
+void isr_gpio_portb(void){ _isr_gpio(1); }
+void isr_gpio_portc(void){ _isr_gpio(2); }
+void isr_gpio_portd(void){ _isr_gpio(3); }
+void isr_gpio_porte(void){ _isr_gpio(4); }
+void isr_gpio_portf(void){ _isr_gpio(5); }
 
 int gpio_init_int(gpio_t pin, gpio_mode_t mode, gpio_flank_t flank,
                   gpio_cb_t cb, void *arg)
@@ -277,4 +251,6 @@ void gpio_irq_disable(gpio_t pin)
 
     HWREG(im_reg_addr) &= ~(pin_bit);
 }
-#endif /* MODULE_PERIPH_GPIO_IRQ */
+
+#endif
+

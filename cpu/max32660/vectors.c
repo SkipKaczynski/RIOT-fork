@@ -1,20 +1,3 @@
-/*
- * Copyright (C) 2015 Rakendra Thapa <rakendrathapa#gmail.com>
- *
- * This file is subject to the terms and conditions of the GNU Lesser General
- * Public License v2.1. See the file LICENSE in the top level directory for more
- * details.
- */
-
-/**
- * @ingroup     cpu_lm4f120
- * @{
- *
- * @file        vectors.c
- * @brief       Interrupt vector definitions
- *
- * @author      Rakendra Thapa <rakendrathapa@gmail.com>
- */
 
 #include <stdint.h>
 #include "vectors_cortexm.h"
@@ -29,6 +12,7 @@ void dummy_handler(void) {
 WEAK_DEFAULT void isr_svc(void);
 WEAK_DEFAULT void isr_pendsv(void);
 WEAK_DEFAULT void isr_systick(void);
+
 /* LM4F120 specific interrupt vectors */
 WEAK_DEFAULT void isr_gpio_porta(void);
 WEAK_DEFAULT void isr_gpio_portb(void);
@@ -238,4 +222,4 @@ ISR_VECTOR(1) const isr_t vector_cpu[CPU_IRQ_NUMOF] = {
     (0UL),                 /* Reserved                         153 */
     (0UL)                  /* Reserved                         154 */
 };
-/** @} */
+

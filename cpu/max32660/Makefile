@@ -1,8 +1,8 @@
 
-# define the module that is build
+# define the module that is built
 MODULE = cpu
 
-# add a list of subdirectories, that should also be build
+# add a list of subdirectories, that should also be built
 DIRS = periph $(RIOTCPU)/cortexm_common
 
 # (file triggers compiler bug. see #5775)
