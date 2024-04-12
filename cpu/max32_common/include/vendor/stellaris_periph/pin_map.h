@@ -1,3 +1,6 @@
+#ifndef STELLARIS_PIN_MAP_H
+#define STELLARIS_PIN_MAP_H
+
 //*****************************************************************************
 //
 // pin_map.h - Mapping of peripherals to pins for all parts.
@@ -36,9 +39,6 @@
 // This is part of revision 9453 of the Stellaris Peripheral Driver Library.
 //
 //*****************************************************************************
-
-#ifndef STELLARIS_PIN_MAP_H
-#define STELLARIS_PIN_MAP_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -454,4 +454,4 @@ extern "C" {
 }
 #endif
 
-#endif /* STELLARIS_PIN_MAP_H */
+#endif

@@ -1,3 +1,6 @@
+#ifndef STELLARIS_HIBERNATE_H
+#define STELLARIS_HIBERNATE_H
+
 //*****************************************************************************
 //
 // hibernate.h - API definition for the Hibernation module.
@@ -36,9 +39,6 @@
 // This is part of revision 9453 of the Stellaris Peripheral Driver Library.
 //
 //*****************************************************************************
-
-#ifndef STELLARIS_HIBERNATE_H
-#define STELLARIS_HIBERNATE_H
 
 //*****************************************************************************
 //
@@ -164,4 +164,4 @@ extern unsigned long HibernateBatCheckDone(void);
 }
 #endif
 
-#endif  /* STELLARIS_HIBERNATE_H */
+#endif

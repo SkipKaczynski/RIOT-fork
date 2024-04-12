@@ -1,3 +1,6 @@
+#ifndef STELLARIS_INTERRUPT_H
+#define STELLARIS_INTERRUPT_H
+
 //*****************************************************************************
 //
 // interrupt.h - Prototypes for the NVIC Interrupt Controller Driver.
@@ -36,9 +39,6 @@
 // This is part of revision 9453 of the Stellaris Peripheral Driver Library.
 //
 //*****************************************************************************
-
-#ifndef STELLARIS_INTERRUPT_H
-#define STELLARIS_INTERRUPT_H
 
 //*****************************************************************************
 //
@@ -90,4 +90,4 @@ extern unsigned long IntPriorityMaskGet(void);
 }
 #endif
 
-#endif /* STELLARIS_INTERRUPT_H */
+#endif

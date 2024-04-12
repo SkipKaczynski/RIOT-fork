@@ -1,3 +1,6 @@
+#ifndef STELLARIS_GPIO_H
+#define STELLARIS_GPIO_H
+
 //*****************************************************************************
 //
 // gpio.h - Defines and Macros for GPIO API.
@@ -36,9 +39,6 @@
 // This is part of revision 9453 of the Stellaris Peripheral Driver Library.
 //
 //*****************************************************************************
-
-#ifndef STELLARIS_GPIO_H
-#define STELLARIS_GPIO_H
 
 //*****************************************************************************
 //
@@ -196,4 +196,4 @@ extern void GPIOADCTriggerDisable(unsigned long ulPort, unsigned char ucPins);
 }
 #endif
 
-#endif /* STELLARIS_GPIO_H */
+#endif

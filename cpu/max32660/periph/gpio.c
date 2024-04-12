@@ -15,12 +15,12 @@
 /**
  * @brief   Mask out the pin type from the gpio_mode_t value
  */
-#define TYPE(mode)          (mode >> 4)
+#define TYPE(mode)  (mode >> 4)
 
 /**
  * @brief   Mask out the pin mode from the gpio_mode_t value
  */
-#define MODE(mode)          (mode & 0x0f)
+#define MODE(mode)  (mode & 0x0f)
 
 /**
  * @brief     Extract the pin number of the given pin
@@ -79,25 +79,25 @@ static gpio_state_t gpio_config[NUM_OF_PORT][NUM_OF_PINS];
 
 int gpio_init(gpio_t pin, gpio_mode_t mode)
 {
-    const uint8_t port_num = _port_num(pin);
-    const uint32_t port_addr = _port_base[port_num];
-    const uint8_t pin_num = _pin_num(pin);
-    const uint32_t sysctl_port_base = _sysctl_port_base[port_num];
-    const unsigned long pin_bit = 1ul << pin_num;
+    const uint8_t       port_num  = _port_num(pin);
+    const uint32_t      port_addr = _port_base[port_num];
+    const uint8_t       pin_num   = _pin_num(pin);
+    const unsigned long pin_bit   = 1ul << pin_num;
+
+    const uint32_t  sysctl_port_base = _sysctl_port_base[port_num];
 
     DEBUG("Init GPIO: port %c, %d\n", 'A' + port_num, pin_num);
     DEBUG("Sysctl %" PRIx32 "\n", sysctl_port_base);
 
     ROM_SysCtlPeripheralEnable(sysctl_port_base);
 
-    HWREG(port_addr+GPIO_LOCK_R_OFF) = GPIO_LOCK_KEY;
-    HWREG(port_addr+GPIO_CR_R_OFF) |=  pin_bit;
-    HWREG(port_addr+GPIO_DEN_R_OFF) |= pin_bit;
-    HWREG(port_addr+GPIO_LOCK_R_OFF) = 0;
+    HWREG (port_addr + GPIO_LOCK_R_OFF) = GPIO_LOCK_KEY;
+    HWREG (port_addr + GPIO_CR_R_OFF)  |=  pin_bit;
+    HWREG (port_addr + GPIO_DEN_R_OFF) |= pin_bit;
+    HWREG (port_addr + GPIO_LOCK_R_OFF) = 0;
 
-    ROM_GPIOPadConfigSet(port_addr, pin_bit,
-                         GPIO_STRENGTH_2MA, TYPE(mode));
-    ROM_GPIODirModeSet(port_addr, pin_bit, MODE(mode));
+    ROM_GPIOPadConfigSet (port_addr, pin_bit, GPIO_STRENGTH_2MA, TYPE(mode));
+    ROM_GPIODirModeSet   (port_addr, pin_bit, MODE(mode));
 
     return 0;
 }
@@ -105,9 +105,9 @@ int gpio_init(gpio_t pin, gpio_mode_t mode)
 
 int gpio_read(gpio_t pin)
 {
-    const uint8_t port_num = _port_num(pin);
+    const uint8_t  port_num  = _port_num(pin);
     const uint32_t port_addr = _port_base[port_num];
-    const uint8_t pin_num = _pin_num(pin);
+    const uint8_t  pin_num   = _pin_num(pin);
 
     return HWREG(port_addr + ((1<<pin_num) << 2)) != 0;
 }
@@ -115,9 +115,9 @@ int gpio_read(gpio_t pin)
 
 void gpio_set(gpio_t pin)
 {
-    const uint8_t port_num = _port_num(pin);
+    const uint8_t  port_num  = _port_num(pin);
     const uint32_t port_addr = _port_base[port_num];
-    const uint8_t pin_num = _pin_num(pin);
+    const uint8_t  pin_num   = _pin_num(pin);
     DEBUG("Setting bit %d of port %c\n", pin_num, 'A' + port_num);
     DEBUG("Port addr %" PRIx32 ", vs %x\n", port_addr,  GPIO_PORTF_BASE);
     ROM_GPIOPinWrite(port_addr, 1<<pin_num, 1<<pin_num);
@@ -126,9 +126,9 @@ void gpio_set(gpio_t pin)
 
 void gpio_clear(gpio_t pin)
 {
-    const uint8_t port_num = _port_num(pin);
+    const uint8_t  port_num  = _port_num(pin);
     const uint32_t port_addr = _port_base[port_num];
-    const uint8_t pin_num = _pin_num(pin);
+    const uint8_t  pin_num   = _pin_num(pin);
 
     HWREG(port_addr + ((1<<pin_num) << 2)) = 0;
 }
@@ -136,23 +136,15 @@ void gpio_clear(gpio_t pin)
 
 void gpio_toggle(gpio_t pin)
 {
-    if (gpio_read(pin)) {
-        gpio_clear(pin);
-    }
-    else {
-        gpio_set(pin);
-    }
+    if (gpio_read(pin)) { gpio_clear (pin); }
+    else                { gpio_set   (pin); }
 }
 
 
 void gpio_write(gpio_t pin, int value)
 {
-    if (value) {
-        gpio_set(pin);
-    }
-    else {
-        gpio_clear(pin);
-    }
+    if (value) { gpio_set   (pin); }
+    else       { gpio_clear (pin); }
 }
 
 
@@ -178,12 +170,13 @@ static void _isr_gpio(uint32_t port_num){
     cortexm_isr_end();
 }
 
-void isr_gpio_porta(void){ _isr_gpio(0); }
-void isr_gpio_portb(void){ _isr_gpio(1); }
-void isr_gpio_portc(void){ _isr_gpio(2); }
-void isr_gpio_portd(void){ _isr_gpio(3); }
-void isr_gpio_porte(void){ _isr_gpio(4); }
-void isr_gpio_portf(void){ _isr_gpio(5); }
+void isr_gpio_porta (void) { _isr_gpio (0); }
+void isr_gpio_portb (void) { _isr_gpio (1); }
+void isr_gpio_portc (void) { _isr_gpio (2); }
+void isr_gpio_portd (void) { _isr_gpio (3); }
+void isr_gpio_porte (void) { _isr_gpio (4); }
+void isr_gpio_portf (void) { _isr_gpio (5); }
+
 
 int gpio_init_int(gpio_t pin, gpio_mode_t mode, gpio_flank_t flank,
                   gpio_cb_t cb, void *arg)

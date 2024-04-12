@@ -1,3 +1,6 @@
+#ifndef STELLARIS_FPU_H
+#define STELLARIS_FPU_H
+
 //*****************************************************************************
 //
 // fpu.h - Prototypes for the floatint point manipulation routines.
@@ -37,15 +40,6 @@
 //
 //*****************************************************************************
 
-#ifndef STELLARIS_FPU_H
-#define STELLARIS_FPU_H
-
-//*****************************************************************************
-//
-// If building with a C++ compiler, make all of the definitions in this header
-// have a C binding.
-//
-//*****************************************************************************
 #ifdef __cplusplus
 extern "C"
 {
@@ -85,11 +79,7 @@ extern "C"
 #define FPU_ROUND_NEG_INF       0x00800000
 #define FPU_ROUND_ZERO          0x00c00000
 
-//*****************************************************************************
-//
-// Prototypes.
-//
-//*****************************************************************************
+
 extern void FPUEnable(void);
 extern void FPUDisable(void);
 extern void FPUStackingEnable(void);
@@ -100,13 +90,8 @@ extern void FPUNaNModeSet(unsigned long ulMode);
 extern void FPUFlushToZeroModeSet(unsigned long ulMode);
 extern void FPURoundingModeSet(unsigned long ulMode);
 
-//*****************************************************************************
-//
-// Mark the end of the C bindings section for C++ compilers.
-//
-//*****************************************************************************
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* STELLARIS_FPU_H */
+#endif
