@@ -19,8 +19,11 @@
 #include "stellaris_periph/rom.h"
 #include "stellaris_periph/sysctl.h"
 
+#if 0
+#else
 #ifdef CPU_MODEL_MAX32660H5QR
 #include "vendor/lm4f120h5qr.h"
+#endif
 #endif
 
 /**

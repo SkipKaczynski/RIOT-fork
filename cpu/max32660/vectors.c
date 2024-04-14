@@ -2,11 +2,13 @@
 #include <stdint.h>
 #include "vectors_cortexm.h"
 
-/* define a local dummy handler as it needs to be in the same compilation unit
- * as the alias definition */
-void dummy_handler(void) {
-    dummy_handler_default();
+// define a local dummy handler as it needs to be in the same compilation unit
+// as the alias definition
+void dummy_handler (void)
+{
+    dummy_handler_default () ;
 }
+
 
 /* Cortex-M common interrupt vectors */
 WEAK_DEFAULT void isr_svc(void);
@@ -80,8 +82,9 @@ WEAK_DEFAULT void isr_wtimer5a(void);
 WEAK_DEFAULT void isr_wtimer5b(void);
 WEAK_DEFAULT void isr_sysex(void);
 
-/* CPU specific interrupt vector table */
-ISR_VECTOR(1) const isr_t vector_cpu[CPU_IRQ_NUMOF] = {
+// CPU specific interrupt vector table
+ISR_VECTOR(1) const isr_t vector_cpu [CPU_IRQ_NUMOF] =
+{
     isr_gpio_porta,        /* GPIO Port A                      16 */
     isr_gpio_portb,        /* GPIO Port B                      17 */
     isr_gpio_portc,        /* GPIO Port C                      18 */
@@ -221,5 +224,5 @@ ISR_VECTOR(1) const isr_t vector_cpu[CPU_IRQ_NUMOF] = {
     (0UL),                 /* Reserved                         152 */
     (0UL),                 /* Reserved                         153 */
     (0UL)                  /* Reserved                         154 */
-};
+} ;
 
